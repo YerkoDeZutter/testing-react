@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Scientists from './scientists';
+import AddScientists from './addScientists';
 
 class App extends Component {
 
@@ -11,12 +12,27 @@ class App extends Component {
     ]
   }
 
+  addScientist = (scientist) => {
+
+    scientist.id = this.state.scientists.length + 1;
+    let scientists = [...this.state.scientists, scientist]
+    this.setState({
+      scientists: scientists
+    })
+
+  }
+
+  deleteScientist = (scientist) => {
+    
+  }
+
   render() {
     return (
       <div className="App">
 
       <h1>My first React app</h1>
-      <Scientists scientists={this.state.scientists} />
+      <Scientists scientists={this.state.scientists} deleteScientists={this.deleteScientist} />
+      <AddScientists addScientists={this.addScientist} />
 
       </div>
     );
