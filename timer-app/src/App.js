@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class App extends Component {
 
   state = {
-    min: 10,
+    min: 1,
     sec: 0,
     button: 'play'
   }
@@ -11,7 +11,7 @@ class App extends Component {
   startC = () => {
     this.interval = setInterval(() => {
 
-      if(this.state.sec === 0){
+      if(this.state.sec === 0 && this.state.min !== 0){
         let nextMin = this.state.min - 1
         let nextSec = 59
         this.setState({
@@ -19,6 +19,10 @@ class App extends Component {
           sec: nextSec,
           button: 'stop'
         })
+      } else if (this.state.sec === 0 && this.state.min === 0) {
+
+        this.stopC();
+
       } else {
         let nextMin = this.state.min
         let nextSec = this.state.sec - 1
@@ -44,9 +48,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.min} : {this.state.sec}
+        {this.state.min.toString().length === 1 ? '0' + this.state.min : this.state.min} : {this.state.sec.toString().length === 1 ? '0' + this.state.sec : this.state.sec}
         <br />
-        <button onClick={this.state.button === 'play' ? this.startC : this.stopC}>start</button>
+        <button onClick={this.state.button === 'play' ? this.startC : this.stopC}>{this.state.button}</button>
       </div>
     );
   }
