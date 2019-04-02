@@ -4,30 +4,41 @@ class App extends Component {
 
   state = {
     min: 10,
-    sec: 0
+    sec: 0,
+    button: 'play'
   }
 
   startC = () => {
     this.interval = setInterval(() => {
-      // const date = this.calculateCountdown(this.props.date);
-      // date ? this.setState(date) : this.stop();
+
       if(this.state.sec === 0){
         let nextMin = this.state.min - 1
         let nextSec = 59
         this.setState({
           min: nextMin,
-          sec: nextSec
+          sec: nextSec,
+          button: 'stop'
         })
       } else {
         let nextMin = this.state.min
         let nextSec = this.state.sec - 1
         this.setState({
           min: nextMin,
-          sec: nextSec
+          sec: nextSec,
+          button: 'stop'
         })
       }
 
     }, 1000);
+  }
+
+  stopC = () => {
+    clearInterval(this.interval);
+    this.setState({
+      min: 10,
+      sec: 0,
+      button: 'play'
+    })
   }
 
   render() {
@@ -35,7 +46,7 @@ class App extends Component {
       <div className="App">
         {this.state.min} : {this.state.sec}
         <br />
-        <button onClick={this.startC}>start</button>
+        <button onClick={this.state.button === 'play' ? this.startC : this.stopC}>start</button>
       </div>
     );
   }
