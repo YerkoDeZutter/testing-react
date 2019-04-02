@@ -14,7 +14,7 @@ class App extends Component {
 
   addScientist = (scientist) => {
 
-    scientist.id = this.state.scientists.length + 1;
+    scientist.id = this.state.scientists[this.state.scientists.length - 1].id + 1;
     let scientists = [...this.state.scientists, scientist]
     this.setState({
       scientists: scientists
@@ -22,8 +22,15 @@ class App extends Component {
 
   }
 
-  deleteScientist = (scientist) => {
-    
+  deleteScientist = (id) => {
+
+    let scientists = this.state.scientists.filter(scientist => {
+      return scientist.id !== id ? true : false
+    })
+    this.setState({
+      scientists: scientists
+    })
+
   }
 
   render() {
@@ -31,7 +38,7 @@ class App extends Component {
       <div className="App">
 
       <h1>My first React app</h1>
-      <Scientists scientists={this.state.scientists} deleteScientists={this.deleteScientist} />
+      <Scientists scientists={this.state.scientists} deleteScientist={this.deleteScientist} />
       <AddScientists addScientists={this.addScientist} />
 
       </div>
