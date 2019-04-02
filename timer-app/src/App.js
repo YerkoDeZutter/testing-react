@@ -3,9 +3,17 @@ import React, { Component } from 'react';
 class App extends Component {
 
   state = {
-    min: 1,
+    min: 0,
     sec: 0,
     button: 'play'
+  }
+
+  setC = (e) => {
+    this.setState({
+      min: e.target.value,
+      sec: 0,
+      button: 'play'
+    })
   }
 
   startC = () => {
@@ -39,15 +47,18 @@ class App extends Component {
   stopC = () => {
     clearInterval(this.interval);
     this.setState({
-      min: 10,
+      min: 0,
       sec: 0,
       button: 'play'
     })
+
   }
 
   render() {
     return (
       <div className="App">
+        <input type="number" min='0' max='99' name="setMin" id="setMin" value={this.state.min} onChange={this.setC} />
+        <br />
         {this.state.min.toString().length === 1 ? '0' + this.state.min : this.state.min} : {this.state.sec.toString().length === 1 ? '0' + this.state.sec : this.state.sec}
         <br />
         <button onClick={this.state.button === 'play' ? this.startC : this.stopC}>{this.state.button}</button>
