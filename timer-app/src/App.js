@@ -17,6 +17,12 @@ class App extends Component {
   }
 
   startC = () => {
+    let curMin = this.state.min
+    this.setState({
+      min: curMin,
+      sec: 0,
+      button: 'stop'
+    })
     this.interval = setInterval(() => {
 
       if(this.state.sec === 0 && this.state.min !== 0){
