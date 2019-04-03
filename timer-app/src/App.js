@@ -60,14 +60,26 @@ class App extends Component {
 
   }
 
+
+
+changeC = (e) => {
+  let curMin = this.state.min
+  e.target.value === '+' ? curMin < 99 ? this.setState({min: curMin + 1}) : this.setState({min: curMin}) : curMin > 1 ? this.setState({min: curMin - 1}) : this.setState({min: curMin})
+}
+
+
   render() {
     return (
       <div className="App">
         <h1>Set timer and countdown</h1>
         <br />
-        <input type={this.state.button === 'play' ? "number" : "hidden"} min='1' max='99' name="setMin" id="setMin" value={this.state.min} onChange={this.setC} />
+        {
+        // <input type={this.state.button === 'play' ? "number" : "hidden"} min='1' max='99' name="setMin" id="setMin" value={this.state.min} onChange={this.setC} />
+        }
         <br />
+        <input type={this.state.button === 'play' ? "button" : "hidden"} onClick={this.changeC} value='-' />
         <h1>{this.state.min.toString().length === 1 ? '0' + this.state.min : this.state.min} : {this.state.sec.toString().length === 1 ? '0' + this.state.sec : this.state.sec}</h1>
+        <input type={this.state.button === 'play' ? "button" : "hidden"} onClick={this.changeC} value='+' />
         <br />
         <button onClick={this.state.button === 'play' ? this.startC : this.stopC}>{this.state.button}</button>
       </div>

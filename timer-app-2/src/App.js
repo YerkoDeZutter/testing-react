@@ -3,19 +3,48 @@ import React, { Component } from 'react';
 class App extends Component {
 
   state = {
-
+    min: 1,
+    sec: 0,
+    button: 'play'
   }
 
   setC = (e) => {
+    this.setState({
+      min: e.target.value
+    })
+  }
 
+  tick = (e) =>{
+
+    let minNow = Math.floor(this.secondsRemaining / 60);
+    let secNow = this.secondsRemaining - (minNow * 60);
+    console.log();
+    this.setState({
+      min: minNow,
+      sec: secNow
+    })
+
+    this.secondsRemaining--
   }
 
   startC = (e) => {
 
+    this.setState({
+      button: 'stop'
+    })
+
+    this.interval = setInterval(this.tick, 1000)
+    let time = this.state.min;
+    this.secondsRemaining = time * 60 - 1;
   }
 
   stopC = (e) => {
-
+    clearInterval(this.interval);
+    this.setState({
+      min: 1,
+      sec: 0,
+      button: 'play'
+    })
   }
 
   render() {
