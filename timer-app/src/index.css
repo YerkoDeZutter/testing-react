@@ -14,18 +14,24 @@ h1{
 }
 
 input{
-  width: 100px;
-  height: 100px;
   font-size: 70px;
   line-height: 70px;
   margin: 100px;
   margin-top: -100px;
-  border-radius: 50%;
 }
 
 button{
+  font-size: 30px;
+}
+
+input, button{
   width: 100px;
   height: 100px;
-  font-size: 30px;
   border-radius: 50%;
+  background-color: skyblue;
+  border: rgb(99, 155, 179) solid 2px;
+}
+
+input:active, button:active{
+  border: rgb(142, 220, 255) solid 2px;
 }
