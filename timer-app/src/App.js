@@ -36,6 +36,7 @@ class App extends Component {
       } else if (this.state.sec === 0 && this.state.min === 0) {
 
         this.stopC();
+        alert('HEY. TIMER ENDED');
 
       } else {
         let nextMin = this.state.min
